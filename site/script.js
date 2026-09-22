@@ -52,6 +52,17 @@
     update();
   });
 
+  // Pinned Get Started: show it once most of the hero has scrolled away.
+  const cta = document.querySelector(".sticky-cta");
+  const hero = document.querySelector(".hero");
+  if (cta && hero && "IntersectionObserver" in window) {
+    new IntersectionObserver(([entry]) => {
+      cta.classList.toggle("is-visible", entry.intersectionRatio < 0.4);
+    }, { threshold: [0, 0.4, 1] }).observe(hero);
+  } else if (cta) {
+    cta.classList.add("is-visible");
+  }
+
   // Links with no destination yet (Get Started, Schedule, socials) say so
   // rather than jumping to the top of the page.
   let toast, timer;

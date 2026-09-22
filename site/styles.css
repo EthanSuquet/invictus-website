@@ -256,9 +256,11 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 /* ---------- home: programs ---------- */
 
+/* The bottom padding keeps the space the PSD gives the Get Started button
+   (67 + 58 + 87 = 212 at 1920), which the orange coaches panel rises into. */
 .programs {
   position: relative;
-  padding: clamp(64px, 6.65vw, 128px) 0 max(44px, 4.55vw);
+  padding: clamp(64px, 6.65vw, 128px) 0 clamp(56px, 11.05vw, 212px);
 }
 
 .program-grid {
@@ -285,7 +287,6 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 .supporting { margin-top: clamp(36px, 3.65vw, 70px); }
 .supporting p { margin-top: clamp(10px, 1vw, 20px); max-width: 1000px; }
-.programs .btn { margin-top: clamp(32px, 3.5vw, 67px); }
 
 @media (max-width: 1100px) {
   .program-grid { grid-template-columns: repeat(2, 1fr); }
@@ -363,7 +364,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 /* ---------- home: reviews ---------- */
 
-.reviews { padding: clamp(64px, 10vw, 193px) 0 clamp(36px, 2.6vw, 50px); }
+.reviews { padding: clamp(64px, 10vw, 193px) 0 clamp(56px, 7.2vw, 138px); }
 .reviews .h2 { text-align: center; }
 
 .carousel {
@@ -439,13 +440,12 @@ ul { margin: 0; padding: 0; list-style: none; }
   .review { min-height: 0; }
 }
 
-.reviews .btn { margin-top: clamp(24px, 1.6vw, 30px); }
 
 /* ---------- home: FAQ ---------- */
 
 .faq {
   position: relative;
-  padding: clamp(60px, 5.75vw, 110px) 0 clamp(36px, 2.2vw, 42px);
+  padding: clamp(60px, 5.75vw, 110px) 0 clamp(56px, 7.2vw, 138px);
   color: var(--white);
   background: #111 url("img/faq-bg.jpg") center / cover no-repeat;
 }
@@ -481,17 +481,15 @@ ul { margin: 0; padding: 0; list-style: none; }
 .faq-item summary:hover { color: var(--orange); }
 .faq-item__answer { padding: 0 10px 1.2em; max-width: 60em; }
 
-.faq .btn { margin-top: clamp(28px, 2vw, 38px); }
 
 /* ---------- home: location ---------- */
 
 .location {
-  padding: clamp(60px, 5.8vw, 111px) 0 38px;
+  /* Room at the foot for the pinned Get Started to come to rest in:
+     gap above + button + gap below (32 + 58 + 38 at 1920). */
+  padding: clamp(60px, 5.8vw, 111px) 0 calc(clamp(24px, 1.65vw, 32px) + 2.42 * var(--fs-lead) + var(--cta-gap));
   background: var(--grey);
 }
-/* Below this the centred footer logo, which rises into this band, would meet
-   the left-aligned button. */
-@media (max-width: 900px) { .location { padding-bottom: 64px; } }
 .location__address {
   margin-top: clamp(12px, 1.3vw, 25px);
   font-size: var(--fs-lead);
@@ -507,7 +505,31 @@ ul { margin: 0; padding: 0; list-style: none; }
   border: 0;
   background: #e5e3df;
 }
-.location .btn { margin-top: clamp(24px, 1.65vw, 32px); }
+
+/* ---------- pinned Get Started (home) ---------- */
+
+/* Sticky, not fixed: it rides the bottom-left of the viewport while <main> is
+   on screen, then stops at its place in the flow, the foot of the location
+   band, so it never sits on the footer. The negative top margin keeps it from
+   taking up space there. The gap clears the footer logo, which rises 22-39px
+   into the band. */
+:root { --cta-gap: clamp(28px, 2vw, 38px); }
+.sticky-cta {
+  position: sticky;
+  z-index: 15;
+  bottom: var(--cta-gap);
+  display: block;
+  width: fit-content;
+  margin: calc(-2.42em - var(--cta-gap)) 0 var(--cta-gap) max(var(--gutter), (100% - var(--wrap)) / 2);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+  transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.25s ease, background-color 0.15s ease;
+}
+/* Hidden over the hero, which has its own call to action (script.js). */
+.js .sticky-cta:not(.is-visible) {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+}
 
 /* ---------- footer ---------- */
 
