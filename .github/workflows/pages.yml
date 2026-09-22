@@ -1,0 +1,52 @@
+name: Deploy preview to GitHub Pages
+
+# Publishes site/ to https://ethansuquet.github.io/invictus-website/ so the
+# build can be shown to people before it goes to the real domain.
+#
+# A <meta name="robots" content="noindex,nofollow"> is injected into every page
+# at deploy time: this is a staging URL and must never be indexed. Injecting it
+# here rather than committing it keeps site/ production-ready, so nobody has to
+# remember to strip it at launch. (A robots.txt would not work: on a project
+# page it sits at /invictus-website/robots.txt, which crawlers never read.)
+#
+# No CNAME is written. Add one only when the real domain should point here.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Mark as staging (noindex)
+        run: |
+          for f in site/*.html; do
+            perl -0pi -e 's{(<meta name="viewport"[^>]*>)}{$1\n<meta name="robots" content="noindex,nofollow">}' "$f"
+          done
+          if grep -L 'noindex' site/*.html | grep -q .; then echo "noindex missing from a page"; exit 1; fi
+          echo "Injected noindex into $(ls site/*.html | wc -l) pages"
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - id: deployment
+        uses: actions/deploy-pages@v4
