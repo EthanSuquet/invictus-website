@@ -80,11 +80,15 @@ Tokens: orange `#f29821`, hero type `#fdf9f5`, location band `#cdcdcd`, black.
 `content/reviews.json` is the source; `python3 tools/build_reviews.py` renders it into the wheel in
 `site/index.html` as plain HTML. Edit the JSON, never the cards.
 
-🔴 **12 of 41 are in so far.** The Google listing has 41 reviews, all 5 stars (2026-09-22), but
-signed-out visitors get *"a limited view of Google Maps"*: 10 reviews, with *See more reviews (31)*
-behind a Google sign-in. Those 10 are in, plus Adam Richardson's and Kaylee Drozewski's from the PSD
-screenshot (Crystal Nadeau's is in both). To add the other 29, read them from a signed-in Google
-account (or the owner's Business Profile), add one entry per review to the JSON, and rebuild.
+**All of them are in: 37 reviews** (2026-09-22). The Google listing has 41 reviews, all 5 stars;
+37 have text. The other four (Cady, Dan Germain, Michael Henriquez, Rachel Jerke) are stars only and
+are left out. The PSD's three come first, as designed; the rest follow Google's *Most relevant* order.
+Aaron Chase appears twice because he left two separate reviews.
+
+⚠️ **Refreshing it needs a signed-in Google account.** Signed out, Google shows *"a limited view of
+Google Maps"*: 10 reviews, with the rest behind a sign-in. The 2026-09-22 pull was done in Ethan's
+signed-in Chrome, with the tab in front, because Maps stops loading reviews in a background tab.
+For a new review, add an entry to the JSON and rebuild.
 
 Avatars from the PSD are local; the Google ones are hotlinked from `lh3.googleusercontent.com`,
 and if one stops loading the reviewer's initial shows instead.
