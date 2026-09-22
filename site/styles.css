@@ -520,8 +520,11 @@ ul { margin: 0; padding: 0; list-style: none; }
   font-size: clamp(13px, 0.94vw, 18px);
   font-weight: 500;
 }
-/* The logo straddles the top edge of the footer. */
+/* The logo straddles the top edge of the footer, over whatever sits above it:
+   in the About PSD it overlaps the corner of the orange panel (z-index 1). */
 .site-footer__logo {
+  position: relative;
+  z-index: 2;
   display: inline-block;
   margin-top: calc(-1 * clamp(22px, 2vw, 39px));
 }
@@ -560,6 +563,9 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 /* ---------- about ---------- */
 
+/* The page is shorter than a tall monitor; keep what shows below the footer black. */
+.page-about { background: var(--black); }
+
 .about-hero {
   position: relative;
   padding-top: max(130px, 10.26vw);
@@ -578,7 +584,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .about-panel {
   position: relative;
   z-index: 1;
-  width: max(560px, 46.25vw);
+  width: clamp(560px, 46.25vw, 888px);   /* PSD 888 at 1920; no wider, or the lines run long */
   padding: clamp(40px, 4.1vw, 79px) clamp(28px, 3.3vw, 63px) clamp(40px, 4vw, 76px) clamp(28px, 3.9vw, 75px);
   background: var(--orange);
 }
