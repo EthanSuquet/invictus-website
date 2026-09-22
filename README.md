@@ -11,7 +11,7 @@ site/                ← the deployable. Upload this directory, nothing else.
   index.html            Home
   about.html            About ("Unconquered")
   styles.css            the whole design system
-  script.js             mobile menu, coach switcher, review arrows; the site works without it
+  script.js             mobile menu, coach switcher, review wheel, pinned button; the site works without it
   img/                  every image, cut from the PSDs by tools/export_assets.py
 tools/export_assets.py ← regenerates site/img/ from the PSDs
 design/psd/          ← the three PSDs (gitignored: 243 MB)
@@ -53,9 +53,11 @@ Tokens: orange `#f29821`, hero type `#fdf9f5`, location band `#cdcdcd`, black.
   Gotham licence is bought, put the files in `site/fonts/`, add `@font-face` rules, move Gotham to
   the front of `--font` in `styles.css`, and bring `--fs-display` and `--fs-nav` back to the PSD
   sizes of 119 and 20.
-- **The reviews** are a screenshot of a Google-reviews widget in the PSD. They are rebuilt as real
-  cards with the three reviews transcribed verbatim, typos included, because they are quotes.
-  The avatars are cut from the screenshot.
+- **The reviews** are a screenshot of three Google reviews in the PSD. They are a wheel of **every
+  5-star review with text** (Ethan, 2026-09-22): arrows wrap round at both ends, it turns every 6s
+  while on screen, stops once someone uses it, and stays still for reduced motion. Long reviews
+  clamp to seven lines with *Read more*. The PSD's three come first; text is verbatim, typos
+  included, because they are quotes. See **Reviews** below.
 - **The map** is a screenshot in the PSD. It is a live Google Maps embed here.
 - **Social icons** were pasted into the PSD as screenshots. They are redrawn as SVG in the same
   colours (`#415893`, `#d7a93a`).
@@ -72,6 +74,20 @@ Tokens: orange `#f29821`, hero type `#fdf9f5`, location band `#cdcdcd`, black.
 - **The About image** has a black strip and a teal UI line from the screenshot it came from. Both
   are hidden under the orange panel on desktop but would show on mobile, so the export trims and
   patches them.
+
+## Reviews
+
+`content/reviews.json` is the source; `python3 tools/build_reviews.py` renders it into the wheel in
+`site/index.html` as plain HTML. Edit the JSON, never the cards.
+
+🔴 **12 of 41 are in so far.** The Google listing has 41 reviews, all 5 stars (2026-09-22), but
+signed-out visitors get *"a limited view of Google Maps"*: 10 reviews, with *See more reviews (31)*
+behind a Google sign-in. Those 10 are in, plus Adam Richardson's and Kaylee Drozewski's from the PSD
+screenshot (Crystal Nadeau's is in both). To add the other 29, read them from a signed-in Google
+account (or the owner's Business Profile), add one entry per review to the JSON, and rebuild.
+
+Avatars from the PSD are local; the Google ones are hotlinked from `lh3.googleusercontent.com`,
+and if one stops loading the reviewer's initial shows instead.
 
 ## 🔴 Placeholders: nothing below exists in the PSDs
 

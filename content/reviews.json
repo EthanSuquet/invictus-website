@@ -1,0 +1,89 @@
+{
+  "about": "Every 5-star Google review with text, rendered into site/index.html by tools/build_reviews.py. Edit this file, not the HTML. Adam Richardson and Kaylee Drozewski are transcribed from the Google-reviews screenshot in the home PSD; the rest were read from the INVICTUS Training Center Google Maps listing on 2026-09-22. That listing has 41 reviews, all 5 stars, but signed-out visitors see only 10 of them, so 29 are not here yet (see README).",
+  "listing": "https://www.google.com/maps/place/INVICTUS+Training+Center/@42.5783592,-70.8724814,17z/data=!4m8!3m7!1s0x89e3169e63255555:0xdff93e1dbd035bb6!8m2!3d42.5783592!4d-70.8724814!9m1!1b1!16s%2Fg%2F11c2jxfjkd",
+  "fetched": "2026-09-22",
+  "reviews": [
+    {
+      "name": "Adam Richardson",
+      "avatar": "img/reviews/adam-richardson.png",
+      "text": "I went in for a morning session. The instructor, David Carlson, did a great job and took his job seriously. I felt welcomed and it was a comfortable atmosphere. I think I learned some things as well.",
+      "source": "PSD screenshot"
+    },
+    {
+      "name": "Kaylee Drozewski",
+      "avatar": "img/reviews/kaylee-drozewski.png",
+      "text": "Invites training center has really help me and everyone there is like family to me and it wouldn't be here now if it wasn't for nate he has done everything he can to make sure everyone is comfortable and happy",
+      "source": "PSD screenshot"
+    },
+    {
+      "name": "Crystal Nadeau",
+      "avatar": "img/reviews/crystal-nadeau.png",
+      "text": "The owner, Nate, truly cares about being THE BEST coach possible. Every class he teaches is like a seminar. Very welcoming. This place has THE BEST WOMEN’S PROGRAM I have seen and I have trained at various gyms. If you’re a female interested in BJJ, this gym is for you.",
+      "source": "Google Maps",
+      "posted": "5 years ago (as of 2026-09-22)"
+    },
+    {
+      "name": "Nicole Iovanni",
+      "avatar": "https://lh3.googleusercontent.com/a/ACg8ocLEEFQWm-7bNLDsBV2F29aZs3CIc5G_mzgTm9eAL01KOjaMeg=s128-c",
+      "text": "I began training at Invictus in December. My husband and daughter train at the gym and I wanted to try to women's classes. As a beginner I was intimidated to start. The owner Nate and coaches Johnny and Laura were incredibly supportive. They met me at my skill level and continue to push me forward so that I improve. The training is challenging in the best way; I am a calmer, happier, more confident person because of it. I highly recommend this gym and community. Fun for the whole family :)",
+      "source": "Google Maps",
+      "posted": "2 months ago (as of 2026-09-22)"
+    },
+    {
+      "name": "Trock",
+      "avatar": "https://lh3.googleusercontent.com/a-/ALV-UjWUPkV0nwCi14ratfzQHG8PB9fk5GYLE72uwN-HzPSUyYow5_U=s128-c",
+      "text": "The Owner is an incredibly skilled grappler, he received his black belt from world famous Judoka and the fastest person to get a legit black belt ever in BJJ from John Danaher black belt Travis Stevens. To get a black belt under Travis is one of the most difficult things to accomplish as Travis has only given that honor to a handful of students in almost 15 years as teaching.\n\nTo get an idea of the high level instruction that coach Nate gives his students I highly recommend getting the butterfly effect from BJJ fanatics an in-depth systematic teaching of the butterfly guard that will make this guard a strong part of your game.",
+      "source": "Google Maps",
+      "posted": "3 months ago (as of 2026-09-22)"
+    },
+    {
+      "name": "Josh Vecchio",
+      "avatar": "https://lh3.googleusercontent.com/a-/ALV-UjVINkdWXY_-bAA99HMczcxLD4ARnRuXSVLh89B24DBMkTVeW9l4=s128-c",
+      "text": "I trained at Invictus for nearly a year and a half, and I have nothing but great things to say about the gym. All of the instructors are as knowledgable as they are kind, and the community of members feels like a second family. Under Nate's leadership, the culture is one that balances hard work and intention with fun and good times. If you're looking for a gym that perfectly harmonizes elite level training with a harmonious social atmosphere, Invictus is the place to be.",
+      "source": "Google Maps",
+      "posted": "a year ago (as of 2026-09-22)"
+    },
+    {
+      "name": "Ricky Siewers",
+      "avatar": "https://lh3.googleusercontent.com/a/ACg8ocKgjpPHFmlYkqC4stjX_EVoCp-7BoJVfQAyTzWtFs7NHqURO-2l=s128-c",
+      "text": "I’ve tried BJJ gyms all across NYC and Boston and nothing compares to the incredible community Nate and his team have created at Invictus. Staff is highly skilled and welcoming to new comers while also providing an avenue for growth at the highest level of the sport. Couldn’t recommend more highly.",
+      "source": "Google Maps",
+      "posted": "10 months ago (as of 2026-09-22)"
+    },
+    {
+      "name": "Ashley Mak",
+      "avatar": "https://lh3.googleusercontent.com/a-/ALV-UjUBRyDaR0kIlR_U16vSMub56USB6cnd52n2OkHs7kxgxpCOap0D=s128-c",
+      "text": "Dropped in for a class today at 10am. The coach Johnny was so knowledgeable and welcoming. We had a great class where we focused on some really good solid basics, and then followed up with sparring.\n\nThe gym is beautiful, clean and spacious. Really great energy and a super welcoming community.\n\nThe owner Nate was there too and made me feel super welcome.\n\nMartial arts can be a very intimidating activity, especially with something as close quarters as jiujitsu.\n\nHighly recommend!",
+      "source": "Google Maps",
+      "posted": "4 years ago (as of 2026-09-22)"
+    },
+    {
+      "name": "Parker Jamison",
+      "avatar": "https://lh3.googleusercontent.com/a/ACg8ocKF_0a7ghAhiJ-JCtFKfg4LSks-0WDp1gJSSlj8Hu37k2RJ=s128-c",
+      "text": "The instructors here are welcoming, attentive, and thorough in their teaching approach. Whatever your level or reason for training BJJ, there is a space for you here. The gym's owner, Nate, really sets the tone of the place, one that encourages and challenges within a great camaraderie. Drop in, check it out, introduce yourself.",
+      "source": "Google Maps",
+      "posted": "4 years ago (as of 2026-09-22)"
+    },
+    {
+      "name": "Kieran Mackay",
+      "avatar": "https://lh3.googleusercontent.com/a-/ALV-UjW-SeArcMswmbh8ISFbsYWl1SPE-3yYiEtSqvuolV8odFqn8R4bhA=s128-c",
+      "text": "Excellent school focused on individual development as well as a welcoming community. I was new to the world of jiu jitsu when I started training at Invictus. Nate Morrison has created a special culture here & I believe every student at the school buys into his approach: no ego. Just train hard, help out your peers, & trust the process!",
+      "source": "Google Maps",
+      "posted": "3 years ago (as of 2026-09-22)"
+    },
+    {
+      "name": "Gary Miller",
+      "avatar": "https://lh3.googleusercontent.com/a/ACg8ocLBGID2xlErHWZXyKxRJDw0X6Q93JB2uRBG4j39ZQUcs5k-6Q=s128-c",
+      "text": "Nate is the complete package - knowledgeable, competitive, compassionate and a great communicator/instructor. I've trained with Nate for close to eight years and still manage to pick up new techniques every time we train. In regard to his school and students, the apple doesn't fall far from the tree. They are all well mannered, dedicated and welcoming. What Nate has built is very impressive.",
+      "source": "Google Maps",
+      "posted": "3 years ago (as of 2026-09-22)"
+    },
+    {
+      "name": "Ryan Mead",
+      "avatar": "https://lh3.googleusercontent.com/a-/ALV-UjW8yjnbifE4h6ZvPGkfBdo27W78se3PNr5JRB8RLQAH9Qu7cuwq=s128-c",
+      "text": "I’ve been training at Invictus for just under two years and have nothing but good things to say.  The jiu jitsu curriculum Nate has created is designed to link techniques with systems which makes learning so much easier.  Everyone I train with there are willing to help and work hard to get better. For sure there is a very welcoming team mentality.\nThere are few places like this. We are very lucky.\n\nAll you need to know is the coach is so dedicated to the lifestyle that he WILL show up to formal events in Fuji shorts and tshirt wearing a Fanny pack.",
+      "source": "Google Maps",
+      "posted": "4 years ago (as of 2026-09-22)"
+    }
+  ]
+}

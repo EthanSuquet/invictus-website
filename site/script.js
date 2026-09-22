@@ -32,7 +32,10 @@
     });
   });
 
-  // Review carousel arrows: step one card, disable at either end.
+  // Review wheel: the arrows step one card and wrap around at either end, and
+  // it turns on its own every 6s while on screen. It stops for good once
+  // someone uses the arrows or swipes, pauses while hovered or focused, and
+  // never moves for people who ask for reduced motion.
   document.querySelectorAll("[data-carousel]").forEach((carousel) => {
     const track = carousel.querySelector(".carousel__track");
     const prev = carousel.querySelector(".carousel__arrow--prev");
@@ -41,15 +44,55 @@
       const card = track.firstElementChild;
       return card ? card.getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap || 0) : 0;
     };
-    const update = () => {
-      prev.disabled = track.scrollLeft <= 2;
-      next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 2;
+    const go = (dir) => {
+      const max = track.scrollWidth - track.clientWidth;
+      if (dir > 0 && track.scrollLeft >= max - 2) track.scrollTo({ left: 0, behavior: "smooth" });
+      else if (dir < 0 && track.scrollLeft <= 2) track.scrollTo({ left: max, behavior: "smooth" });
+      else track.scrollBy({ left: dir * step(), behavior: "smooth" });
     };
-    prev.addEventListener("click", () => track.scrollBy({ left: -step(), behavior: "smooth" }));
-    next.addEventListener("click", () => track.scrollBy({ left: step(), behavior: "smooth" }));
-    track.addEventListener("scroll", update, { passive: true });
-    window.addEventListener("resize", update);
-    update();
+
+    let stopped = false, hovered = false, focused = false, inView = false;
+    const stop = () => { stopped = true; };
+    prev.addEventListener("click", () => { stop(); go(-1); });
+    next.addEventListener("click", () => { stop(); go(1); });
+    track.addEventListener("pointerdown", stop);
+    track.addEventListener("wheel", stop, { passive: true });
+    carousel.addEventListener("mouseenter", () => { hovered = true; });
+    carousel.addEventListener("mouseleave", () => { hovered = false; });
+    carousel.addEventListener("focusin", () => { focused = true; });
+    carousel.addEventListener("focusout", () => { focused = false; });
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(([e]) => { inView = e.isIntersecting; }, { threshold: 0.5 }).observe(track);
+    }
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setInterval(() => {
+      if (!stopped && !hovered && !focused && inView && !reduce.matches && !document.hidden) go(1);
+    }, 6000);
+  });
+
+  // Reviews: "Read more" appears only on cards whose text is clamped.
+  document.querySelectorAll(".review").forEach((card) => {
+    const text = card.querySelector(".review__text");
+    const more = card.querySelector(".review__more");
+    if (!text || !more) return;
+    const check = () => {
+      if (!card.classList.contains("is-expanded")) more.hidden = text.scrollHeight <= text.clientHeight + 2;
+    };
+    more.addEventListener("click", () => {
+      const open = card.classList.toggle("is-expanded");
+      more.textContent = open ? "Show less" : "Read more";
+      more.setAttribute("aria-expanded", String(open));
+    });
+    check();
+    window.addEventListener("resize", check);
+    if (document.fonts) document.fonts.ready.then(check);
+  });
+
+  // Hotlinked Google avatars: if one fails, fall back to the initial beneath it.
+  document.querySelectorAll(".review__avatar img").forEach((img) => {
+    const drop = () => img.remove();
+    if (img.complete && img.naturalWidth === 0) drop();
+    else img.addEventListener("error", drop);
   });
 
   // Pinned Get Started: show it once most of the hero has scrolled away.
