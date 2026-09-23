@@ -64,7 +64,8 @@ Tokens: orange `#f29821`, hero type `#fdf9f5`, location band `#cdcdcd`, black.
 - **The Atomic Nutrition logo** is embedded in full colour but shows grey in the design. The export
   script desaturates it to match.
 - **Coaches.** The PSD shows Nate's bio open and Bobby and Michael as boxed buttons. That is built
-  as a switcher: click a coach to open their bio.
+  as a switcher: click a coach to open their bio. Bobby's and Michael's bios are not in the PSD; Ethan
+  supplied them on 2026-09-23.
 - **One Get Started, pinned.** The home PSD draws a Get Started button at the bottom-left of every
   screenful. It is one button, not four: hidden over the hero, pinned bottom-left from there, and at
   rest at the foot of the location band so it never covers the footer (Ethan, 2026-09-22).
@@ -105,7 +106,6 @@ grep -rn "TO COME\|data-todo" site/*.html
 
 | What | Where | Behaviour now |
 |---|---|---|
-| **Bobby McCarron and Michael Zenga bios** | Home, *Meet the Coaches* | `[… BIO TO COME]` |
 | **Get Started / Book your free intro session** destination: a form, a booking tool, a page? | nav, hero, and the pinned button | shows "link coming soon" |
 | **Schedule** destination | nav | shows "link coming soon" |
 | **Facebook and Instagram URLs** | footer | shows "link coming soon" |
