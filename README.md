@@ -69,7 +69,9 @@ Tokens: orange `#f29821`, hero type `#fdf9f5`, location band `#cdcdcd`, black.
   screenful. It is one button, not four: hidden over the hero, pinned bottom-left from there, and at
   rest at the foot of the location band so it never covers the footer (Ethan, 2026-09-22).
 - **FAQ.** The PSD shows the questions only. They are built as an accordion, with a `+` added as the
-  open affordance.
+  open affordance. The **answers** come from the FAQ at the foot of the old site, invictus-tc.com
+  (pulled 2026-09-23), word for word except one missing word: "if we are good fit" → "if we are a
+  good fit". Nothing else on the new site comes from the old one: it is a fresh start.
 - **Two typos fixed** in Nate's copy: "coacheswho" → "coaches who", "wellrounded" → "well-rounded".
 - **The About image** has a black strip and a teal UI line from the screenshot it came from. Both
   are hidden under the orange panel on desktop but would show on mobile, so the export trims and
@@ -103,7 +105,6 @@ grep -rn "TO COME\|data-todo" site/*.html
 
 | What | Where | Behaviour now |
 |---|---|---|
-| **Answers to the 8 FAQ questions** | Home, *Before your first class* | `[ANSWER TO COME]` |
 | **Bobby McCarron and Michael Zenga bios** | Home, *Meet the Coaches* | `[… BIO TO COME]` |
 | **Get Started / Book your free intro session** destination: a form, a booking tool, a page? | nav, hero, and the pinned button | shows "link coming soon" |
 | **Schedule** destination | nav | shows "link coming soon" |

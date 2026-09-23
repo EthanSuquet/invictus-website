@@ -519,6 +519,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .faq-item[open] summary::after { transform: rotate(45deg); }
 .faq-item summary:hover { color: var(--orange); }
 .faq-item__answer { padding: 0 10px 1.2em; max-width: 60em; }
+.faq-item__answer p + p { margin-top: 1em; }
 
 
 /* ---------- home: location ---------- */
