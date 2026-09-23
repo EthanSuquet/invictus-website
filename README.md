@@ -108,7 +108,6 @@ grep -rn "TO COME\|data-todo" site/*.html
 |---|---|---|
 | **Get Started / Book your free intro session** destination: a form, a booking tool, a page? | nav, hero, and the pinned button | shows "link coming soon" |
 | **Schedule** destination | nav | shows "link coming soon" |
-| **Facebook and Instagram URLs** | footer | shows "link coming soon" |
 | **BJJ / Muay Thai / Kids pages** | nav | jump to the programs section on Home until those pages are designed |
 | **BJJ Fanatics logo** | footer | only a 192 × 35 raster exists in the PSD, so it is soft on retina screens. Ask for a vector |
 
