@@ -95,13 +95,16 @@
     else img.addEventListener("error", drop);
   });
 
-  // Pinned Get Started: show it once most of the hero has scrolled away.
+  // Pinned Get Started: show it once most of the hero is gone. Watched from the
+  // programs section rather than the hero, because on desktop the hero stays
+  // pinned on screen while programs rises over it (motion.js): it is shown once
+  // the top of programs passes 40% of the way up the screen.
   const cta = document.querySelector(".sticky-cta");
-  const hero = document.querySelector(".hero");
-  if (cta && hero && "IntersectionObserver" in window) {
+  const below = document.querySelector(".programs");
+  if (cta && below && "IntersectionObserver" in window) {
     new IntersectionObserver(([entry]) => {
-      cta.classList.toggle("is-visible", entry.intersectionRatio < 0.4);
-    }, { threshold: [0, 0.4, 1] }).observe(hero);
+      cta.classList.toggle("is-visible", entry.isIntersecting || entry.boundingClientRect.top < 0);
+    }, { rootMargin: "0px 0px -60% 0px" }).observe(below);
   } else if (cta) {
     cta.classList.add("is-visible");
   }

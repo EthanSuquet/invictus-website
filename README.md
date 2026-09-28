@@ -12,6 +12,7 @@ site/                ← the deployable. Upload this directory, nothing else.
   about.html            About ("Unconquered")
   styles.css            the whole design system
   script.js             mobile menu, coach switcher, review wheel, pinned button; the site works without it
+  motion.js             scroll motion, after the Teeej site (see Motion below); the site works without it
   img/                  every image, cut from the PSDs by tools/export_assets.py
 tools/export_assets.py ← regenerates site/img/ from the PSDs
 design/psd/          ← the three PSDs (gitignored: 243 MB)
@@ -77,6 +78,25 @@ Tokens: orange `#f29821`, hero type `#fdf9f5`, location band `#cdcdcd`, black.
 - **The About image** has a black strip and a teal UI line from the screenshot it came from. Both
   are hidden under the orange panel on desktop but would show on mobile, so the export trims and
   patches them.
+
+## Motion
+
+`site/motion.js` borrows the Teeej site's motion (`Teeej Website/curtain.js`, the same set-up its
+Author page uses), at the same timings and easing (Ethan, 2026-09-28):
+
+- **Curtain, home, desktop only** (at least 1001 × 620): the hero pins while its photo slowly zooms
+  and its copy fades up and away, then the white programs section rises over it. Uses GSAP +
+  ScrollTrigger 3.13 from cdnjs, as Teeej does. While it runs the hero is exactly one screen tall,
+  so on 16:10 screens it is a little taller than the PSD's 16:9.
+- **Fade-in:** headings, copy, each program card (staggered across the row), the review wheel, each
+  FAQ and the map rise 22px into view, and replay whenever they come back on screen.
+- **Side-in, desktop:** the coaches photo and orange panel, and the About panel and photo, slide in
+  from their own edges. On phones their copy fades in instead.
+- **FAQ** answers slide open and shut; **nav links** get an orange underline that sweeps in on hover.
+
+All of it is off under *reduced motion*, and nothing starts hidden unless the script is running.
+Because the hero stays on screen while it is pinned, the pinned Get Started watches the programs
+section instead: it appears once programs is 40% of the way up the screen.
 
 ## Reviews
 

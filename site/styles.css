@@ -139,6 +139,24 @@ ul { margin: 0; padding: 0; list-style: none; }
   letter-spacing: -0.01em;
 }
 .site-nav a:not(.nav-cta):hover { color: var(--orange); }
+/* Teeej's hover: an orange rule sweeps in under the link from the left. */
+@media (min-width: 1081px) {
+  .site-nav a:not(.nav-cta) { position: relative; }
+  .site-nav a:not(.nav-cta)::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -0.35em;
+    width: 100%;
+    height: 2px;
+    background: var(--orange);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.18s ease;
+  }
+  .site-nav a:not(.nav-cta):hover::after,
+  .site-nav a:not(.nav-cta):focus-visible::after { transform: scaleX(1); }
+}
 
 .site-nav .nav-cta {
   display: inline-block;
@@ -201,6 +219,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 .hero {
   position: relative;
+  z-index: 0;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -210,6 +229,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   background: #161616;
   overflow: hidden;
 }
+.hero__bg img { transform-origin: 70% 50%; }   /* the curtain's zoom holds on the athlete */
 .hero__bg,
 .hero__bg img {
   position: absolute;
@@ -260,6 +280,8 @@ ul { margin: 0; padding: 0; list-style: none; }
    (67 + 58 + 87 = 212 at 1920), which the orange coaches panel rises into. */
 .programs {
   position: relative;
+  z-index: 1;
+  background: var(--white);
   padding: clamp(64px, 6.65vw, 128px) 0 clamp(56px, 11.05vw, 212px);
 }
 
@@ -301,7 +323,8 @@ ul { margin: 0; padding: 0; list-style: none; }
    programs section and hangs 92px into the reviews below (PSD "Color Fill 6"). */
 .coaches {
   position: relative;
-  z-index: 1;
+  z-index: 2;   /* above .programs, which its photo and orange panel rise into */
+  overflow-x: clip;   /* the side-in columns start 72px outside their box */
   display: grid;
   grid-template-columns: 927fr 993fr;
 }
@@ -630,6 +653,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 .about-hero {
   position: relative;
+  overflow-x: clip;
   padding-top: max(130px, 10.26vw);
   background: var(--black);
 }
@@ -674,6 +698,43 @@ ul { margin: 0; padding: 0; list-style: none; }
     object-position: 60% 30%;
   }
   .about-panel { width: auto; margin: 0; padding: 40px var(--gutter) 64px; }
+}
+
+/* ---------- scroll motion (motion.js), after the Teeej site ---------- */
+
+/* The curtain pins the hero for a screen and a bit, so it has to be exactly one
+   screen tall while it runs. */
+.is-curtain .hero { min-height: 100svh; }
+
+/* Only ever added by motion.js, so content stays visible without it. No
+   will-change: it would promote every paragraph to its own layer (Teeej found
+   Safari chokes on that). */
+.fade-in {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.fade-in.is-visible { opacity: 1; transform: none; }
+
+/* The four programs arrive one after another when they share a row. */
+@media (min-width: 1101px) {
+  .program.fade-in:nth-child(2) { transition-delay: 0.12s; }
+  .program.fade-in:nth-child(3) { transition-delay: 0.24s; }
+  .program.fade-in:nth-child(4) { transition-delay: 0.36s; }
+}
+
+.side-in-left,
+.side-in-right {
+  opacity: 0;
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.side-in-left { transform: translateX(-72px); }
+.side-in-right { transform: translateX(72px); }
+.side-in-left.is-visible,
+.side-in-right.is-visible { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-in, .side-in-left, .side-in-right { opacity: 1; transform: none; transition: none; }
 }
 
 /* ---------- toast for links that have no destination yet ---------- */
