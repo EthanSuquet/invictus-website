@@ -1,6 +1,6 @@
 // INVICTUS Training Center: scroll motion, modelled on the Teeej site's curtain.js.
 //
-// 1. Curtain (home, desktop): the hero pins while its photo slowly zooms and its
+// 1. Curtain (home, every screen that can hold the hero): the hero pins while its photo slowly zooms and its
 //    copy fades up and away, then the white programs section rises over it like
 //    a theatre curtain. Reverses on scroll-up. Needs GSAP + ScrollTrigger.
 // 2. Fade-in: headings, copy and a few whole blocks rise 22px into place as they
@@ -84,16 +84,25 @@
     });
   });
 
-  // ---- curtain: home hero, desktop ----
+  // ---- curtain: home hero, desktop and phones ----
   const hero = document.querySelector(".hero");
   const cover = document.querySelector(".programs");
   if (!hero || !cover || !window.gsap || !window.ScrollTrigger) return;
   gsap.registerPlugin(ScrollTrigger);
+  // A phone's address bar grows and shrinks the viewport as you scroll. Don't
+  // re-measure the pin for that, or it jumps mid-scroll.
+  ScrollTrigger.config({ ignoreMobileResize: true });
 
-  // The hero has to be exactly one screen tall to pin cleanly, and its copy sits
-  // at the bottom, so screens too short to hold it keep the plain scroll.
-  gsap.matchMedia().add("(min-width: 1001px) and (min-height: 620px)", () => {
+  // Landscape phones are too short for it.
+  gsap.matchMedia().add("(min-height: 480px)", () => {
     document.documentElement.classList.add("is-curtain");
+    // The hero has to be exactly one screen tall to pin cleanly, and its copy
+    // sits at the bottom, so if this screen can't hold all of it (a small phone,
+    // a short window), keep the plain scroll.
+    if (hero.offsetHeight > window.innerHeight + 1) {
+      document.documentElement.classList.remove("is-curtain");
+      return;
+    }
     // Pull the cover up one screen so it rides over the pinned hero through
     // normal flow (the pin adds 170% of spacing below the hero).
     cover.style.marginTop = "-100svh";

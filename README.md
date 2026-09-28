@@ -84,10 +84,13 @@ Tokens: orange `#f29821`, hero type `#fdf9f5`, location band `#cdcdcd`, black.
 `site/motion.js` borrows the Teeej site's motion (`Teeej Website/curtain.js`, the same set-up its
 Author page uses), at the same timings and easing (Ethan, 2026-09-28):
 
-- **Curtain, home, desktop only** (at least 1001 × 620): the hero pins while its photo slowly zooms
-  and its copy fades up and away, then the white programs section rises over it. Uses GSAP +
-  ScrollTrigger 3.13 from cdnjs, as Teeej does. While it runs the hero is exactly one screen tall,
-  so on 16:10 screens it is a little taller than the PSD's 16:9.
+- **Curtain, home, desktop and phones:** the hero pins while its photo slowly zooms and its copy
+  fades up and away, then the white programs section rises over it. Uses GSAP + ScrollTrigger 3.13
+  from cdnjs, as Teeej does. While it runs the hero is exactly one screen tall: on 16:10 screens a
+  little taller than the PSD's 16:9, and on phones the full screen instead of 88%. It is off for
+  screens under 480px tall (landscape phones) and for any screen too short to hold all the hero
+  copy, which keep the plain scroll. On phones the pin ignores the address bar sliding in and out,
+  and the strip it uncovers under the hero is painted the hero's dark (Ethan, 2026-09-28).
 - **Fade-in:** headings, copy, each program card (staggered across the row), the review wheel, each
   FAQ and the map rise 22px into view, and replay whenever they come back on screen.
 - **Side-in, desktop:** the coaches photo and orange panel, and the About panel and photo, slide in

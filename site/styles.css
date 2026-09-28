@@ -705,6 +705,10 @@ ul { margin: 0; padding: 0; list-style: none; }
 /* The curtain pins the hero for a screen and a bit, so it has to be exactly one
    screen tall while it runs. */
 .is-curtain .hero { min-height: 100svh; }
+/* When a phone's address bar slides away mid-pin, the screen grows taller than
+   the pinned hero and the strip below it shows the pin's spacer. Paint it the
+   hero's own dark, which the mobile gradient already fades to at the bottom. */
+.is-curtain .pin-spacer:has(> .hero) { background: #161616; }
 
 /* Only ever added by motion.js, so content stays visible without it. No
    will-change: it would promote every paragraph to its own layer (Teeej found
