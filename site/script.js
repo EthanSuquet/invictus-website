@@ -16,27 +16,20 @@
     document.addEventListener("keydown", (e) => { if (e.key === "Escape") setOpen(false); });
   }
 
-  // Header loop, desktop only: phones and reduced motion keep the photo, and
-  // never download the video. It plays only while the hero is on screen, and
-  // retries when a tab opened in the background comes to the front (browsers
-  // refuse to start video in a hidden tab).
+  // Header loop (started in index.html on desktop): plays only while the hero
+  // is on screen, and retries when a tab opened in the background comes to the
+  // front (browsers refuse to start video in a hidden tab).
   const loop = document.querySelector(".hero__video");
-  const wide = window.matchMedia("(min-width: 901px)").matches;
-  const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (loop && wide && !still) {
+  if (loop && loop.src) {
     let onScreen = true;
     const sync = () => {
       if (onScreen && !document.hidden) loop.play().catch(() => {});
       else loop.pause();
     };
-    loop.addEventListener("playing", () => loop.classList.add("is-playing"), { once: true });
-    loop.src = loop.dataset.src;
     document.addEventListener("visibilitychange", sync);
     if ("IntersectionObserver" in window) {
       new IntersectionObserver(([e]) => { onScreen = e.isIntersecting; sync(); })
         .observe(loop.closest(".hero"));
-    } else {
-      sync();
     }
   }
 

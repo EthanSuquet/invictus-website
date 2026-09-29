@@ -241,13 +241,8 @@ ul { margin: 0; padding: 0; list-style: none; }
   object-fit: cover;
   object-position: 70% 50%;
 }
-/* Desktop header loop: script.js only loads it on wide screens without reduced
-   motion, and it fades up over the photo (its first shot) once it is playing. */
-.hero__video {
-  opacity: 0;
-  transition: opacity 0.8s ease;
-}
-.hero__video.is-playing { opacity: 1; }
+/* Desktop header loop: only loaded on wide screens without reduced motion
+   (index.html). No fade: the still under it is its own first frame. */
 @media (max-width: 900px) {
   .hero__video { display: none; }
 }

@@ -115,13 +115,19 @@ audio. It is re-encoded from Vimeo's 1080p rendition to 6.3 MB (H.264, CRF 26, `
 ffmpeg -i source.mp4 -an -c:v libx264 -preset slow -crf 26 -profile:v high -pix_fmt yuv420p -movflags +faststart site/video/hero-loop.mp4
 ```
 
-The photo stays in the page as the base layer. `script.js` loads the video only on screens 901px and
-wider, and not under reduced motion, so phones never download it; it fades up over the photo
-(which is its first shot) once it is playing, pauses while the hero is off screen or the tab is
-hidden, and the curtain zooms it with the photo. Without JS, the photo is all there is.
+**The page opens on the loop, with no photo first and no fade** (Ethan, 2026-09-29). On desktop the
+hero's still is `img/hero-loop-start.jpg`, the loop's own first frame, and a small inline script
+right after the `<video>` in `index.html` starts it as the page is parsed rather than waiting for
+`script.js`. So whatever shows before the video's first frame decodes is already that frame. Phones
+(`hero-1200.jpg`) and reduced motion (`hero.jpg`, the PSD photo) keep the photo and never download
+the video; so does a desktop without JS, which sees the loop's first frame. `script.js` pauses the
+loop while the hero is off screen or the tab is hidden, and the curtain zooms it with the still.
 
-To swap in a new loop, replace the file at the same path. If it opens on a different shot, export a
-matching `hero.jpg` so the fade from photo to video doesn't jump.
+To swap in a new loop, replace the file at the same path and re-export its first frame:
+
+```bash
+ffmpeg -y -i site/video/hero-loop.mp4 -frames:v 1 -q:v 3 site/img/hero-loop-start.jpg
+```
 
 ## Reviews
 
