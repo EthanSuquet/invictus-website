@@ -117,7 +117,7 @@
         anticipatePin: 1,
       },
     });
-    tl.fromTo(hero.querySelector(".hero__bg img"), { scale: 1 }, { scale: 1.16, ease: "none", duration: 1 }, 0);
+    tl.fromTo(hero.querySelectorAll(".hero__bg img, .hero__video"), { scale: 1 }, { scale: 1.16, ease: "none", duration: 1 }, 0);
     tl.to(hero.querySelector(".hero__content"), { opacity: 0, y: -42, ease: "none", duration: 0.5 }, 0);
 
     ScrollTrigger.refresh();

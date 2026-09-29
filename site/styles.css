@@ -229,9 +229,11 @@ ul { margin: 0; padding: 0; list-style: none; }
   background: #161616;
   overflow: hidden;
 }
-.hero__bg img { transform-origin: 70% 50%; }   /* the curtain's zoom holds on the athlete */
+.hero__bg img,
+.hero__video { transform-origin: 70% 50%; }   /* the curtain's zoom holds on the athlete */
 .hero__bg,
-.hero__bg img {
+.hero__bg img,
+.hero__video {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -239,12 +241,26 @@ ul { margin: 0; padding: 0; list-style: none; }
   object-fit: cover;
   object-position: 70% 50%;
 }
-/* PSD "Gradient Fill 1": #161616 to transparent at 63deg, anchored bottom-left. */
+/* Desktop header loop: script.js only loads it on wide screens without reduced
+   motion, and it fades up over the photo (its first shot) once it is playing. */
+.hero__video {
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+.hero__video.is-playing { opacity: 1; }
+@media (max-width: 900px) {
+  .hero__video { display: none; }
+}
+/* PSD "Gradient Fill 1": #161616 to transparent at 63deg, anchored bottom-left.
+   The top fade is not in the PSD: it keeps the white nav legible where the
+   header loop passes bright gym walls, and is invisible over the photo. */
 .hero::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(27deg, rgba(22, 22, 22, 0.92) 0%, rgba(22, 22, 22, 0.62) 32%, rgba(22, 22, 22, 0) 62%);
+  background:
+    linear-gradient(180deg, rgba(22, 22, 22, 0.55) 0, rgba(22, 22, 22, 0) 190px),
+    linear-gradient(27deg, rgba(22, 22, 22, 0.92) 0%, rgba(22, 22, 22, 0.62) 32%, rgba(22, 22, 22, 0) 62%);
 }
 .hero__content { position: relative; z-index: 1; }
 

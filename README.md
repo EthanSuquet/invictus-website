@@ -14,6 +14,7 @@ site/                ← the deployable. Upload this directory, nothing else.
   script.js             mobile menu, coach switcher, review wheel, pinned button; the site works without it
   motion.js             scroll motion, after the Teeej site (see Motion below); the site works without it
   img/                  every image, cut from the PSDs by tools/export_assets.py
+  video/hero-loop.mp4   the desktop header loop (see Header loop below)
 tools/export_assets.py ← regenerates site/img/ from the PSDs
 design/psd/          ← the three PSDs (gitignored: 243 MB)
 .github/workflows/   ← GitHub Pages deploy
@@ -54,6 +55,9 @@ Tokens: orange `#f29821`, hero type `#fdf9f5`, location band `#cdcdcd`, black.
   Gotham licence is bought, put the files in `site/fonts/`, add `@font-face` rules, move Gotham to
   the front of `--font` in `styles.css`, and bring `--fs-display` and `--fs-nav` back to the PSD
   sizes of 119 and 20.
+- **The hero moves on desktop.** The PSD's hero is a still. On screens 901px and wider it plays a
+  muted 29s montage loop (Ethan, 2026-09-29); see **Header loop** below. A dark fade was added
+  across the top of the hero so the white nav stays legible over the loop's brighter shots.
 - **The reviews** are a screenshot of three Google reviews in the PSD. They are a wheel of **every
   5-star review with text** (Ethan, 2026-09-22): arrows wrap round at both ends, it turns every 6s
   while on screen, stops once someone uses it, and stays still for reduced motion. Long reviews
@@ -100,6 +104,24 @@ Author page uses), at the same timings and easing (Ethan, 2026-09-28):
 All of it is off under *reduced motion*, and nothing starts hidden unless the script is running.
 Because the hero stays on screen while it is pinned, the pinned Get Started watches the programs
 section instead: it appears once programs is 40% of the way up the screen.
+
+## Header loop
+
+`site/video/hero-loop.mp4` is the desktop hero video (Ethan, 2026-09-29), from Vimeo
+<https://vimeo.com/1231402177/f2ce6c0f57>: a 29s training montage at 1920 × 1080, 23.976 fps, no
+audio. It is re-encoded from Vimeo's 1080p rendition to 6.3 MB (H.264, CRF 26, `+faststart`):
+
+```bash
+ffmpeg -i source.mp4 -an -c:v libx264 -preset slow -crf 26 -profile:v high -pix_fmt yuv420p -movflags +faststart site/video/hero-loop.mp4
+```
+
+The photo stays in the page as the base layer. `script.js` loads the video only on screens 901px and
+wider, and not under reduced motion, so phones never download it; it fades up over the photo
+(which is its first shot) once it is playing, pauses while the hero is off screen or the tab is
+hidden, and the curtain zooms it with the photo. Without JS, the photo is all there is.
+
+To swap in a new loop, replace the file at the same path. If it opens on a different shot, export a
+matching `hero.jpg` so the fade from photo to video doesn't jump.
 
 ## Reviews
 
