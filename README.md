@@ -64,10 +64,13 @@ Tokens: orange `#f29821`, hero type `#fdf9f5`, location band `#cdcdcd`, black.
   clamp to seven lines with *Read more*. The PSD's three come first; text is verbatim, typos
   included, because they are quotes. See **Reviews** below.
 - **The map** is a screenshot in the PSD. It is a live Google Maps embed here.
-- **Social icons** were pasted into the PSD as screenshots. They are redrawn as SVG in the same
-  colours (`#415893`, `#d7a93a`).
-- **The Atomic Nutrition logo** is embedded in full colour but shows grey in the design. The export
-  script desaturates it to match.
+- **Social icons** were pasted into the PSD as screenshots. They are redrawn as SVG, plain white on
+  the black footer with no coloured tile (Ethan, 2026-10-07; the PSD had blue and gold tiles).
+- **Partners: BJJ Fanatics only** (Ethan, 2026-10-07). The PSD also shows Atomic Nutrition and Big
+  Little Gyms; both were removed, and BJJ Fanatics sits centred alone.
+- **The logo's left edge is the headline's** (the page content edge), not the PSD's tighter inset.
+- **About on phones** shows two paragraphs, then *Read more* for the rest (Ethan, 2026-10-07). Desktop
+  shows the whole story, as in the PSD.
 - **Coaches.** The PSD shows Nate's bio open and Bobby and Michael as boxed buttons. That is built
   as a switcher: click a coach to open their bio. Bobby's and Michael's bios are not in the PSD; Ethan
   supplied them on 2026-09-23.

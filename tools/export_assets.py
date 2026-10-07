@@ -129,18 +129,7 @@ def main():
     print("partners")
     # BJJ Fanatics exists only as a 192 x 35 raster pasted into the PSD.
     home["Layer 1"].topil().save(OUT / "partners" / "bjj-fanatics.png", optimize=True)
-    # The embedded Atomic file is full colour; the design shows it grey (~#8a8a8a icon,
-    # white type), so drop the colour and keep the alpha.
-    atomic = embedded(home["Atomic-Logo-Side-White-Text-01-2048x615.png"]).convert("RGBA")
-    grey = atomic.convert("L")
-    atomic = Image.merge("RGBA", (grey, grey, grey, atomic.getchannel("A")))
-    atomic.resize((480, round(615 * 480 / 2048)), Image.LANCZOS).save(
-        OUT / "partners" / "atomic-nutrition.png", optimize=True
-    )
-    embedded(home["big-little-gyms-words-white-copy-blg-300-copy-1-2"]).convert("RGBA").save(
-        OUT / "partners" / "big-little-gyms.png", optimize=True
-    )
-    print("  bjj-fanatics.png, atomic-nutrition.png, big-little-gyms.png")
+    print("  bjj-fanatics.png")
 
     print("review avatars")
     # Cut from the Google-reviews screenshot the design pastes in (2x retina).

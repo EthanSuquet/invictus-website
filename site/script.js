@@ -87,6 +87,18 @@
     }, 6000);
   });
 
+  // About: on phones the story stops after two paragraphs until "Read more".
+  // The CSS only collapses it at phone width, so the class is harmless on desktop.
+  document.querySelectorAll(".prose__more").forEach((more) => {
+    const prose = document.getElementById(more.getAttribute("aria-controls"));
+    if (!prose) return;
+    more.addEventListener("click", () => {
+      const open = prose.classList.toggle("is-collapsed") === false;
+      more.textContent = open ? "Show less" : "Read more";
+      more.setAttribute("aria-expanded", String(open));
+    });
+  });
+
   // Reviews: "Read more" appears only on cards whose text is clamped.
   document.querySelectorAll(".review").forEach((card) => {
     const text = card.querySelector(".review__text");
