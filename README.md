@@ -14,7 +14,7 @@ site/                ← the deployable. Upload this directory, nothing else.
   script.js             mobile menu, coach switcher, review wheel, pinned button; the site works without it
   motion.js             scroll motion, after the Teeej site (see Motion below); the site works without it
   img/                  every image, cut from the PSDs by tools/export_assets.py
-  video/hero-loop.mp4   the desktop header loop (see Header loop below)
+  video/hero-loop*.mp4  the header loops, desktop and phone (see Header loop below)
 tools/export_assets.py ← regenerates site/img/ from the PSDs
 design/psd/          ← the three PSDs (gitignored: 243 MB)
 .github/workflows/   ← GitHub Pages deploy
@@ -55,8 +55,8 @@ Tokens: orange `#f29821`, hero type `#fdf9f5`, location band `#cdcdcd`, black.
   Gotham licence is bought, put the files in `site/fonts/`, add `@font-face` rules, move Gotham to
   the front of `--font` in `styles.css`, and bring `--fs-display` and `--fs-nav` back to the PSD
   sizes of 119 and 20.
-- **The hero moves on desktop.** The PSD's hero is a still. On screens 901px and wider it plays a
-  muted 29s montage loop (Ethan, 2026-09-29); see **Header loop** below. A dark fade was added
+- **The hero moves.** The PSD's hero is a still. It plays a muted 29s montage loop: a landscape cut on
+  screens 901px and wider (Ethan, 2026-09-29) and a portrait cut on phones (2026-10-07); see **Header loop** below. A dark fade was added
   across the top of the hero so the white nav stays legible over the loop's brighter shots.
 - **The reviews** are a screenshot of three Google reviews in the PSD. They are a wheel of **every
   5-star review with text** (Ethan, 2026-09-22): arrows wrap round at both ends, it turns every 6s
@@ -115,15 +115,29 @@ audio. It is re-encoded from Vimeo's 1080p rendition to 6.3 MB (H.264, CRF 26, `
 ffmpeg -i source.mp4 -an -c:v libx264 -preset slow -crf 26 -profile:v high -pix_fmt yuv420p -movflags +faststart site/video/hero-loop.mp4
 ```
 
-**The page opens on the loop, with no photo first and no fade** (Ethan, 2026-09-29). On desktop the
-hero's still is `img/hero-loop-start.jpg`, the loop's own first frame, and a small inline script
-right after the `<video>` in `index.html` starts it as the page is parsed rather than waiting for
-`script.js`. So whatever shows before the video's first frame decodes is already that frame. Phones
-(`hero-1200.jpg`) and reduced motion (`hero.jpg`, the PSD photo) keep the photo and never download
-the video; so does a desktop without JS, which sees the loop's first frame. `script.js` pauses the
-loop while the hero is off screen or the tab is hidden, and the curtain zooms it with the still.
+**The page opens on the loop, with no photo first and no fade** (Ethan, 2026-09-29). The hero's still
+is the loop's own first frame (`img/hero-loop-start.jpg`), and a small inline script right after the
+`<video>` in `index.html` starts it as the page is parsed rather than waiting for `script.js`. So
+whatever shows before the video's first frame decodes is already that frame. Reduced motion
+(`hero.jpg`, the PSD photo) keeps the photo and never downloads a video; so does a desktop without JS,
+which sees the loop's first frame. `script.js` pauses the loop while the hero is off screen or the tab
+is hidden, and the curtain zooms it with the still.
 
-To swap in a new loop, replace the file at the same path and re-export its first frame:
+**Phones (900px and under) get a portrait cut** (Ethan, 2026-10-07), `site/video/hero-loop-mobile.mp4`,
+from Vimeo <https://vimeo.com/1233799394/fd3fa58b99>: the same 29s montage at 390 × 844, which is the
+largest Vimeo has (the upload itself is that size, so it is soft on 3x screens). It is Vimeo's
+rendition remuxed, not re-encoded (2.9 MB):
+
+```bash
+ffmpeg -i source.mp4 -an -c:v copy -movflags +faststart site/video/hero-loop-mobile.mp4
+ffmpeg -y -i site/video/hero-loop-mobile.mp4 -frames:v 1 -q:v 3 site/img/hero-loop-start-mobile.jpg
+```
+
+The inline script picks `data-src` or `data-src-mobile` by width, once, at load. The portrait loop is
+centred (`object-position: 50% 50%`), and the phone gradient gained the same top fade as desktop so
+the nav stays legible.
+
+To swap in a new desktop loop, replace the file at the same path and re-export its first frame:
 
 ```bash
 ffmpeg -y -i site/video/hero-loop.mp4 -frames:v 1 -q:v 3 site/img/hero-loop-start.jpg

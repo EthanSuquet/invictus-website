@@ -32,20 +32,22 @@
 
   <section class="hero">
     <picture class="hero__bg">
+      <source media="(max-width: 900px) and (prefers-reduced-motion: no-preference)" srcset="img/hero-loop-start-mobile.jpg">
       <source media="(max-width: 900px)" srcset="img/hero-1200.jpg">
       <source media="(prefers-reduced-motion: no-preference)" srcset="img/hero-loop-start.jpg">
       <img src="img/hero.jpg" width="2400" height="1350" alt="" fetchpriority="high">
     </picture>
-    <!-- Desktop header loop. The still above is its first frame, so the page
-         opens on the loop. Started here, not in script.js, so it loads at once. -->
-    <video class="hero__video" data-src="video/hero-loop.mp4" muted loop playsinline preload="none" aria-hidden="true"></video>
+    <!-- Header loop: a landscape cut on desktop, a portrait cut on phones. The still
+         above is its first frame, so the page opens on the loop. Started here, not
+         in script.js, so it loads at once. -->
+    <video class="hero__video" data-src="video/hero-loop.mp4" data-src-mobile="video/hero-loop-mobile.mp4" muted loop playsinline preload="none" aria-hidden="true"></video>
     <script>
       (() => {
         const v = document.currentScript.previousElementSibling;
-        if (!matchMedia("(min-width: 901px) and (prefers-reduced-motion: no-preference)").matches) return;
+        if (!matchMedia("(prefers-reduced-motion: no-preference)").matches) return;
         v.preload = "auto";
         v.autoplay = true;
-        v.src = v.dataset.src;
+        v.src = matchMedia("(max-width: 900px)").matches ? v.dataset.srcMobile : v.dataset.src;
       })();
     </script>
     <div class="hero__content wrap">

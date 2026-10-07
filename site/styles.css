@@ -241,10 +241,14 @@ ul { margin: 0; padding: 0; list-style: none; }
   object-fit: cover;
   object-position: 70% 50%;
 }
-/* Desktop header loop: only loaded on wide screens without reduced motion
-   (index.html). No fade: the still under it is its own first frame. */
-@media (max-width: 900px) {
-  .hero__video { display: none; }
+/* Header loop: loaded without reduced motion, a landscape cut on wide screens and a
+   portrait cut on phones (index.html). No fade: the still under it is its own first
+   frame. Without a source (reduced motion) there is nothing to show. */
+.hero__video:not([src]) { display: none; }
+@media (max-width: 900px) and (prefers-reduced-motion: no-preference) {
+  /* The portrait loop is framed for the middle, not the PSD photo's right-hand athlete. */
+  .hero__bg img,
+  .hero__video { object-position: 50% 50%; transform-origin: 50% 50%; }
 }
 /* PSD "Gradient Fill 1": #161616 to transparent at 63deg, anchored bottom-left.
    The top fade is not in the PSD: it keeps the white nav legible where the
@@ -280,7 +284,9 @@ ul { margin: 0; padding: 0; list-style: none; }
   .hero { min-height: 88svh; padding-top: 130px; }
   .hero p { max-width: none; }
   .hero::after {
-    background: linear-gradient(0deg, rgba(22, 22, 22, 0.95) 0%, rgba(22, 22, 22, 0.7) 45%, rgba(22, 22, 22, 0.1) 80%);
+    background:
+      linear-gradient(180deg, rgba(22, 22, 22, 0.55) 0, rgba(22, 22, 22, 0) 150px),
+      linear-gradient(0deg, rgba(22, 22, 22, 0.95) 0%, rgba(22, 22, 22, 0.7) 45%, rgba(22, 22, 22, 0.1) 80%);
   }
   .hero .btn { white-space: normal; text-align: center; padding: 1em 0.9em; }
 }
