@@ -25,13 +25,15 @@
 
   /* Montserrat 300/500 set within 2% of Gotham Light/Medium at the PSD sizes.
      Its 900 runs ~20% wider than Gotham Black, so the display and nav sizes
-     are reduced to hold the PSD's line lengths. */
-  --fs-display: clamp(40px, calc(38.9px + 3.29vw), 102px);   /* PSD 119 Gotham Black; 64px at 760 */
-  --fs-h2: clamp(26px, 2.5vw, 48px);         /* PSD 48 */
-  --fs-h3: clamp(20px, 1.54vw, 29.5px);      /* PSD 30 */
-  --fs-lead: clamp(16px, 1.25vw, 24px);      /* PSD 24 */
-  --fs-body: clamp(15px, 0.9375vw, 18px);    /* PSD 18 / 24 */
-  --fs-nav: clamp(14px, 1vw, 19px);          /* PSD 20 Gotham Black */
+     are reduced to hold the PSD's line lengths. Every size here was then taken
+     down about 2px at desktop and 1px at the small end (Sean, 2026-10-16:
+     "the fonts are big across the whole site"). */
+  --fs-display: clamp(38px, calc(36.9px + 3.1vw), 96px);    /* PSD 119 Gotham Black; 60px at 760 */
+  --fs-h2: clamp(24px, 2.3vw, 44px);         /* PSD 48 */
+  --fs-h3: clamp(18px, 1.4vw, 27px);         /* PSD 30 */
+  --fs-lead: clamp(15px, 1.15vw, 22px);      /* PSD 24 */
+  --fs-body: clamp(14px, 0.84vw, 16px);      /* PSD 18 / 24 */
+  --fs-nav: clamp(13px, 0.9vw, 17px);        /* PSD 20 Gotham Black */
 }
 
 *,
@@ -205,10 +207,10 @@ ul { margin: 0; padding: 0; list-style: none; }
   .site-nav li a:not(.nav-cta) {
     display: block;
     padding: 14px 0;
-    font-size: 18px;
+    font-size: 16px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   }
-  .site-nav .nav-cta { margin: 20px 0 0; font-size: 18px; padding: 16px 18px; text-align: center; display: block; }
+  .site-nav .nav-cta { margin: 20px 0 0; font-size: 16px; padding: 16px 18px; text-align: center; display: block; }
   /* No JS: the menu simply wraps under the logo. */
   html:not(.js) .site-header { flex-wrap: wrap; gap: 12px; }
   html:not(.js) .site-nav ul { flex-direction: row; flex-wrap: wrap; gap: 4px 18px; }
@@ -281,7 +283,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 @media (max-width: 760px) {
   /* Keeps "REAL MUAY THAI." on one line down to 320px wide. */
-  :root { --fs-display: min(9.4vw, 64px); }
+  :root { --fs-display: min(9vw, 60px); }
   .hero { min-height: 88svh; padding-top: 130px; }
   .hero p { max-width: none; }
   .hero::after {
@@ -347,15 +349,23 @@ ul { margin: 0; padding: 0; list-style: none; }
   grid-template-columns: 927fr 993fr;
 }
 .coaches__photo {
+  display: grid;
   margin-top: -1.3vw;
   min-height: 100%;
 }
 .coaches__photo img {
+  grid-area: 1 / 1;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: 45% 40%;
 }
+/* Each coach has their own photo; script.js moves .is-shown as the bio changes.
+   Without JS only the first (Nate, whose bio is open) shows. */
+.coaches__photo img:not(.is-shown) { display: none; }
+.js .coaches__photo img:not(.is-shown) { display: block; opacity: 0; }
+.js .coaches__photo img { transition: opacity 0.45s ease; }
+@media (prefers-reduced-motion: reduce) { .js .coaches__photo img { transition: none; } }
 .coaches__panel {
   background: var(--orange);
   margin: -7.45vw 0 -4.8vw;
@@ -480,7 +490,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 .review__avatar::before { content: attr(data-initial); }
 .review__avatar img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.review__name { font-weight: 700; font-size: clamp(16px, 0.97vw, 18.5px); line-height: 1.2; font-style: normal; }
+.review__name { font-weight: 700; font-size: clamp(15px, 0.88vw, 16.5px); line-height: 1.2; font-style: normal; }
 .review__stars { margin-top: 4px; color: var(--star); font-size: 17px; letter-spacing: 3px; line-height: 1; }
 .review__google { width: 26px; height: 26px; align-self: start; margin-top: 6px; }
 /* Google reviews run long; show seven lines, "Read more" for the rest. */
@@ -490,7 +500,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   -webkit-line-clamp: 7;
   overflow: hidden;
   margin: 20px 0 0;
-  font-size: clamp(15px, 0.94vw, 18px);
+  font-size: clamp(14px, 0.84vw, 16px);
   line-height: 1.5;
 }
 .review.is-expanded .review__text { display: block; -webkit-line-clamp: unset; }
@@ -501,7 +511,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   background: none;
   border: 0;
   font: inherit;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 500;
   color: #555;
   text-decoration: underline;
@@ -620,7 +630,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   background: var(--black);
   color: var(--white);
   text-align: center;
-  font-size: clamp(13px, 0.94vw, 18px);
+  font-size: clamp(12px, 0.84vw, 16px);
   font-weight: 500;
 }
 /* The logo straddles the top edge of the footer, over whatever sits above it:
@@ -664,28 +674,38 @@ ul { margin: 0; padding: 0; list-style: none; }
 /* The page is shorter than a tall monitor; keep what shows below the footer black. */
 .page-about { background: var(--black); }
 
+/* Sean, 2026-10-16: new photo, no orange block, the copy simply sits over the
+   photo. The shade on the left (and at the foot, where the footer logo
+   straddles the edge) is what keeps white type readable on it. */
 .about-hero {
   position: relative;
   overflow-x: clip;
   padding-top: max(130px, 10.26vw);
   background: var(--black);
 }
-/* Placed from x=510 of 1920 to the right edge, full height of the band. */
-.about-hero__bg {
-  position: absolute;
-  top: 0;
-  left: 26.5vw;
-  width: calc(100% - 26.5vw);
+.about-hero__bg { position: absolute; inset: 0; z-index: 0; }
+.about-hero__bg img {
+  width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 30% 30%;
+  object-position: 62% 50%;
+}
+.about-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0, rgba(0, 0, 0, 0) 190px),
+    linear-gradient(0deg, rgba(0, 0, 0, 0.9) 0, rgba(0, 0, 0, 0) 160px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.74) 34%, rgba(0, 0, 0, 0) 66%);
 }
 .about-panel {
   position: relative;
   z-index: 1;
-  width: clamp(560px, 46.25vw, 888px);   /* PSD 888 at 1920; no wider, or the lines run long */
-  padding: clamp(40px, 4.1vw, 79px) clamp(28px, 3.3vw, 63px) clamp(40px, 4vw, 76px) clamp(28px, 3.9vw, 75px);
-  background: var(--orange);
+  width: clamp(560px, 46.25vw, 888px);
+  padding: clamp(40px, 4.1vw, 79px) clamp(28px, 3.3vw, 63px) clamp(64px, 6vw, 112px) max(var(--gutter), (100% - var(--wrap)) / 2);
+  color: var(--white);
 }
 .about-panel h1 {
   font-size: var(--fs-h2);
@@ -693,25 +713,27 @@ ul { margin: 0; padding: 0; list-style: none; }
   line-height: 1.05;
   text-transform: uppercase;
 }
-.about-panel .coaches__sub { margin-top: clamp(4px, 0.45vw, 9px); }
+.about-panel .coaches__sub { margin-top: clamp(4px, 0.45vw, 9px); color: var(--orange); }
 .prose {
   margin-top: clamp(20px, 1.9vw, 36px);
-  font-size: clamp(14.5px, 0.83vw, 16px);
+  font-size: clamp(14px, 0.78vw, 15px);
   line-height: 1.5;
 }
 .prose p + p { margin-top: 1.5em; }
 .prose__more { display: none; }
 
 @media (max-width: 1000px) {
+  /* The phone photo (1124 x 1000) fills the top of the page and fades to black
+     under the copy, which starts over its lower half. */
   .about-hero { padding-top: 0; }
-  .about-hero__bg {
-    position: relative;
-    left: auto;
-    width: 100%;
-    height: clamp(300px, 70vw, 520px);
-    object-position: 60% 30%;
+  .about-hero__bg { inset: 0 0 auto 0; height: auto; aspect-ratio: 1124 / 1000; }
+  .about-hero__bg img { height: 100%; object-position: 50% 50%; }
+  .about-hero::after {
+    background:
+      linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0, rgba(0, 0, 0, 0) 150px),
+      linear-gradient(180deg, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) calc(100vw * 0.5), #000 calc(100vw * 0.89));
   }
-  .about-panel { width: auto; margin: 0; padding: 40px var(--gutter) 64px; }
+  .about-panel { width: auto; padding: calc(100vw * 0.62) var(--gutter) 64px; }
   /* Phones read the first two paragraphs, then tap for the rest (script.js).
      Without JS the button never shows and everything stays open. */
   .js .prose.is-collapsed p:nth-child(n + 3) { display: none; }
@@ -723,7 +745,7 @@ ul { margin: 0; padding: 0; list-style: none; }
     border: 0;
     font: inherit;
     font-weight: 700;
-    color: var(--black);
+    color: var(--white);
     text-decoration: underline;
     text-underline-offset: 3px;
     cursor: pointer;

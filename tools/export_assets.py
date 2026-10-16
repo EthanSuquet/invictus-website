@@ -91,19 +91,9 @@ def main():
     faq = crop_as_placed(home[stills + "DSC09775"], (0, 3763, 1920, 4843))
     save_jpeg(faq, "faq-bg.jpg", 1920, 70)
 
-    # About hero: a pre-tinted screenshot, placed from x=482 to past the right
-    # edge. Its left 25px is a black strip and a teal UI line sits near the
-    # bottom-left; both hide under the orange panel on desktop but show on
-    # mobile, so trim the strip and patch the line with the rows just above it.
-    about_img = crop_as_placed(
-        about["Screenshot 2026-09-20 at 3.50.49\u202fPM copy"], (510, 0, 1920, 1121)
-    )
-    ys = [y for y in range(about_img.height - 200, about_img.height)
-          if about_img.getpixel((40, y))[1] > 90]
-    if ys:
-        y0, y1 = ys[0] - 3, ys[-1] + 4
-        about_img.paste(about_img.crop((0, 2 * y0 - y1, 260, y0)), (0, y0))
-    save_jpeg(about_img, "about-hero.jpg", 1800, 80)
+    # The About photo and the coaches' own photos are not cut from the PSDs: Sean
+    # supplied them (2026-10-16), so site/img/about*.jpg and coaches-*.jpg are
+    # committed as given. This script no longer writes about-hero.jpg.
 
     print("logo")
     # The master is opaque white-on-black with a black margin; trim to the frame.

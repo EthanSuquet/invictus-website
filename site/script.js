@@ -35,16 +35,20 @@
 
   // Coaches: one open at a time. The open coach reads as a heading and bio; the
   // rest are the boxed buttons from the design.
+  // The photo beside them changes to the open coach's own.
+  const photos = [...document.querySelectorAll("[data-coach-photos] img")];
   document.querySelectorAll("[data-coaches]").forEach((list) => {
     const coaches = [...list.querySelectorAll(".coach")];
     coaches.forEach((coach) => {
       coach.querySelector("button").addEventListener("click", () => {
+        const bioId = coach.querySelector(".coach__bio").id;
         coaches.forEach((c) => {
           const open = c === coach;
           c.classList.toggle("is-open", open);
           c.querySelector("button").setAttribute("aria-expanded", String(open));
           c.querySelector(".coach__bio").hidden = !open;
         });
+        photos.forEach((img) => img.classList.toggle("is-shown", img.dataset.for === bioId));
       });
     });
   });

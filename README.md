@@ -9,7 +9,7 @@ before anything goes to the real domain, and every page is served `noindex`.
 ```
 site/                ← the deployable. Upload this directory, nothing else.
   index.html            Home
-  about.html            About ("Unconquered")
+  about.html            About ("Unconquered"); new photo, copy over it, no orange block
   styles.css            the whole design system
   script.js             mobile menu, coach switcher, review wheel, pinned button; the site works without it
   motion.js             scroll motion, after the Teeej site (see Motion below); the site works without it
@@ -48,6 +48,12 @@ Tokens: orange `#f29821`, hero type `#fdf9f5`, location band `#cdcdcd`, black.
 
 ### Where the build departs from the PSD, and why
 
+- **Type is about 2px smaller than the PSD** (Sean, 2026-10-16: *"the fonts are big across the whole
+  site"*). Every `--fs-*` token and the review, prose and footer sizes in `styles.css` came down
+  roughly 2px at 1920 and 1px at the small end; the hero headline went from 102px to 96px max.
+- **Nav** (Sean, 2026-10-16): Programs, Coaches, Testimonials, FAQ, About, Schedule, Get Started. The
+  first four are anchors on the home page (`#programs`, `#coaches`, `#reviews`, `#faq`); on the About
+  page they point to `index.html#…`.
 - **Font.** The design is set in **Gotham** (Black, Medium, Light), which needs a paid web licence
   from Hoefler&Co. The preview uses **Montserrat** from Google Fonts, the standard stand-in.
   Medium and Light set within 2% of Gotham's widths at the PSD sizes. Black runs about 20% wider,
@@ -73,7 +79,9 @@ Tokens: orange `#f29821`, hero type `#fdf9f5`, location band `#cdcdcd`, black.
   shows the whole story, as in the PSD.
 - **Coaches.** The PSD shows Nate's bio open and Bobby and Michael as boxed buttons. That is built
   as a switcher: click a coach to open their bio. Bobby's and Michael's bios are not in the PSD; Ethan
-  supplied them on 2026-09-23.
+  supplied them on 2026-09-23. **The photo changes with the open coach** (Sean, 2026-10-16): three
+  stacked images in `.coaches__photo`, `coaches.jpg` (Nate), `coaches-bobby.jpg`, `coaches-michael.jpg`,
+  cross-faded by `script.js`. Bobby's and Michael's are Sean's own files, not PSD crops.
 - **One Get Started, pinned.** The home PSD draws a Get Started button at the bottom-left of every
   screenful. It is one button, not four: hidden over the hero, pinned bottom-left from there, and at
   rest at the foot of the location band so it never covers the footer (Ethan, 2026-09-22).
@@ -82,9 +90,12 @@ Tokens: orange `#f29821`, hero type `#fdf9f5`, location band `#cdcdcd`, black.
   (pulled 2026-09-23), word for word except one missing word: "if we are good fit" → "if we are a
   good fit". Nothing else on the new site comes from the old one: it is a fresh start.
 - **Two typos fixed** in Nate's copy: "coacheswho" → "coaches who", "wellrounded" → "well-rounded".
-- **The About image** has a black strip and a teal UI line from the screenshot it came from. Both
-  are hidden under the orange panel on desktop but would show on mobile, so the export trims and
-  patches them.
+- **About: no orange block** (Sean, 2026-10-16). The PSD's orange panel is gone; the copy sits
+  straight over a new full-bleed photo (`img/about.jpg`, 1920 × 1080, and `img/about-mobile.jpg`,
+  1124 × 1000, for 1000px and under), with a dark shade on the left and at the foot so white type
+  reads. The copy is Sean's, from the Asana task `1219544972985804`, three paragraphs. **Neither image
+  comes from the PSD**, and `tools/export_assets.py` no longer writes `about-hero.jpg`. On phones the
+  first two paragraphs show, then *Read more* for the third. The "This is a different kind of gym" line is orange.
 
 ## Motion
 

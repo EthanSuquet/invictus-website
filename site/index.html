@@ -21,6 +21,10 @@
   <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu"><span></span><span></span><span></span></button>
   <nav class="site-nav" id="site-nav" aria-label="Main">
     <ul>
+      <li><a href="#programs">Programs</a></li>
+      <li><a href="#coaches">Coaches</a></li>
+      <li><a href="#reviews">Testimonials</a></li>
+      <li><a href="#faq">FAQ</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="#" data-todo="The schedule page">Schedule</a></li>
       <li><a class="nav-cta" href="#" data-todo="Get Started">Get Started</a></li>
@@ -94,9 +98,11 @@
     </div>
   </section>
 
-  <section class="coaches" aria-labelledby="coaches-title">
-    <div class="coaches__photo">
-      <img src="img/coaches.jpg" width="1400" height="1266" loading="lazy" alt="Coach Nate sits on a student's chest, arms folded, talking to the class.">
+  <section class="coaches" id="coaches" aria-labelledby="coaches-title">
+    <div class="coaches__photo" data-coach-photos>
+      <img data-for="coach-nate" class="is-shown" src="img/coaches.jpg" width="1400" height="1266" loading="lazy" alt="Coach Nate sits on a student's chest, arms folded, talking to the class.">
+      <img data-for="coach-bobby" src="img/coaches-bobby.jpg" width="1400" height="1266" loading="lazy" alt="Coach Bobby McCarron smiling in a white gi and black belt.">
+      <img data-for="coach-michael" src="img/coaches-michael.jpg" width="1400" height="1266" loading="lazy" alt="Coach Michael Zenga working a guard position on the mats.">
     </div>
     <div class="coaches__panel">
       <h2 class="h2" id="coaches-title">Meet the Coaches</h2>
@@ -126,7 +132,7 @@
     </div>
   </section>
 
-  <section class="reviews" aria-labelledby="reviews-title">
+  <section class="reviews" id="reviews" aria-labelledby="reviews-title">
     <div class="inner">
       <h2 class="h2" id="reviews-title">Real people. Real progress</h2>
 
@@ -478,7 +484,7 @@
     </div>
   </section>
 
-  <section class="faq" aria-labelledby="faq-title">
+  <section class="faq" id="faq" aria-labelledby="faq-title">
     <div class="inner">
       <h2 class="h2" id="faq-title">Before your first class</h2>
       <div class="faq-list">

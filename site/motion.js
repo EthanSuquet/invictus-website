@@ -5,8 +5,8 @@
 //    a theatre curtain. Reverses on scroll-up. Needs GSAP + ScrollTrigger.
 // 2. Fade-in: headings, copy and a few whole blocks rise 22px into place as they
 //    scroll into view, and replay each time they come back.
-// 3. Side-in: two-column rows (coaches photo + panel, the About panel + photo)
-//    slide in from their own edge.
+// 3. Side-in: the coaches photo and panel, and the About copy, slide in from
+//    their own edge.
 // 4. FAQ: answers slide open and shut instead of snapping.
 //
 // Everything bails under reduced motion, and none of it hides content unless
@@ -30,7 +30,7 @@
   };
 
   // ---- side-in: desktop only; below 1001px the columns stack ----
-  const SIDES = ".coaches__photo, .coaches__panel, .about-hero__bg, .about-panel";
+  const SIDES = ".coaches__photo, .coaches__panel, .about-panel";
   const sides = window.matchMedia("(min-width: 1001px)").matches;
   if (sides) {
     const cols = [...document.querySelectorAll(SIDES)];

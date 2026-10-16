@@ -21,6 +21,10 @@
   <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu"><span></span><span></span><span></span></button>
   <nav class="site-nav" id="site-nav" aria-label="Main">
     <ul>
+      <li><a href="index.html#programs">Programs</a></li>
+      <li><a href="index.html#coaches">Coaches</a></li>
+      <li><a href="index.html#reviews">Testimonials</a></li>
+      <li><a href="index.html#faq">FAQ</a></li>
       <li><a href="about.html" aria-current="page">About</a></li>
       <li><a href="#" data-todo="The schedule page">Schedule</a></li>
       <li><a class="nav-cta" href="#" data-todo="Get Started">Get Started</a></li>
@@ -31,20 +35,17 @@
 <main id="main">
 
   <section class="about-hero">
-    <img class="about-hero__bg" src="img/about-hero.jpg" width="1800" height="1431" alt="" fetchpriority="high">
+    <picture class="about-hero__bg">
+      <source media="(max-width: 1000px)" srcset="img/about-mobile.jpg" width="1124" height="1000">
+      <img src="img/about.jpg" width="1920" height="1080" alt="" fetchpriority="high">
+    </picture>
     <div class="about-panel">
       <h1>Unconquered</h1>
       <p class="coaches__sub">This is a different kind of gym</p>
       <div class="prose is-collapsed" id="about-prose">
-        <p>We named this place INVICTUS because it means unconquered.<br>
-        That matters to me, because life throws heavy shots. Injury. Doubt. Stress. Fear. Bad rounds. Hard seasons. The point is not to pretend those things are not real. The point is to learn how to move through them without letting them break you.</p>
-        <p>The poem that inspired our name was written by William Ernest Henley in 1875, from a hospital bed after amputation. It is not about being invincible. It is about keeping your spirit intact when life gets brutal. Like the poem says, “I am the master of my fate, I am the captain of my soul.” We train so you can feel that in your bones, not just read it on a poster.<br>
-        That is what INVICTUS means here.</p>
-        <p>On these mats, you do not have to be fearless. You do not have to be talented on day one. You do not have to prove anything. You just have to show up, breathe through the pressure, stay humble, and keep coming back. Some nights you get tapped. Some nights you get tagged. You learn. You rebuild. You grow.</p>
-        <p>We are not here to create a tough-guy gym. And we are not here to sell the fantasy that you will never struggle. We are here to help you stay unconquered in your body, in your mind, and with your crew around you.<br>
-        That is what jiu-jitsu, Muay Thai, wrestling, judo, kickboxing, and fitness can give you when the training is real and the room is right. Confidence. Discipline. Calm under pressure. A second family that will push you, support you, and not let you quit on yourself.</p>
-        <p>At INVICTUS Training Center, you train so you walk through life less afraid of the world and more in control of your own fate.<br>
-        That is what unconquered looks like.</p>
+        <p>We named this place INVICTUS because it means unconquered. Life throws heavy shots. Injury, doubt, stress, fear, and hard seasons. The goal isn’t to pretend those things don’t exist, but to learn how to move through them without letting them break you. Inspired by William Ernest Henley’s poem Invictus, we believe in the power of keeping your spirit intact when life gets brutal: “I am the master of my fate, I am the captain of my soul.”</p>
+        <p>On these mats, you don’t have to be fearless or talented on day one. You just have to show up, stay humble, and keep coming back. You’ll get challenged, make mistakes, learn, rebuild, and grow. We’re not here to create tough guys or promise you’ll never struggle. We’re here to help you build confidence, discipline, and resilience alongside a crew that pushes you, supports you, and feels like family.</p>
+        <p>Through jiu-jitsu, Muay Thai, wrestling, judo, kickboxing, and fitness, we train to become stronger in body and mind. At INVICTUS Training Center, the goal is to walk through life less afraid of the world and more in control of your own fate. That is what unconquered looks like.</p>
       </div>
       <button class="prose__more" type="button" aria-expanded="false" aria-controls="about-prose">Read more</button>
     </div>
